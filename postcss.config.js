@@ -1,11 +1,17 @@
-module.exports = {
+import SortMediaQueries from 'postcss-sort-media-queries';
+import Autoprefixer from 'autoprefixer';
+import PostCSSNested from 'postcss-nested';
+import CssNano from 'cssnano';
+import VariableCompress from 'postcss-variable-compress';
+
+export default {
     plugins: [
-        require('postcss-sort-media-queries')({
+        SortMediaQueries({
             sort: 'mobile-first',
         }),
-        require('autoprefixer'),
-        require('postcss-nested'),
-        require('cssnano')({
+        Autoprefixer,
+        PostCSSNested,
+        CssNano({
             preset: [
                 'default',
                 {
@@ -15,7 +21,7 @@ module.exports = {
                 },
             ],
         }),
-        require('postcss-variable-compress')([
+        VariableCompress([
             '--vh'
         ])
     ],
